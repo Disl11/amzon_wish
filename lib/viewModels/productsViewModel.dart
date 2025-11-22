@@ -1,5 +1,6 @@
 import 'package:amazonwish/api/api.dart';
 import 'package:amazonwish/models/product.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ProductsViewModel extends ChangeNotifier {
@@ -9,12 +10,22 @@ class ProductsViewModel extends ChangeNotifier {
   Future loadProducts() async {
     final fetchProducts = await ProductsRepo.getProducts();
 
-    products = fetchProducts.take(10).toList();
+    products = fetchProducts;
 
     isLoading = false;
     notifyListeners();
   }
 
+  //recuperation des category
+  List<String> getCategory() {
+    final category = products.map((p) => p.category).toSet().toList();
+    return category;
+  }
+
+  //retrouner les produit filtré par catégori
+
+  List<Product> getProductsByCategory(String category) {
+    return products.where((p) => p.category == category).toList();
   //méthode pour afficher les produits dans le carousel
   //et trier par rabais
 
