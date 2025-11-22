@@ -34,7 +34,7 @@ class Product {
       description: json['description'],
       price: json['price'].toDouble(),
       discountPercentage: json['discountPercentage'].toDouble(),
-      rating: json['rating'].toDouble,
+      rating: json['rating'].toDouble(),
       stock: json['stock'],
       brand: json['brand'] ?? '',
       //des produits de dummy peuvent ne pas avoir de 'brand' d'où la chaine de caractères si null

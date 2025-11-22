@@ -1,3 +1,4 @@
+import 'package:amazonwish/views/widgets/listViewRow.dart';
 import 'package:flutter/material.dart';
 
 class Shoppingcard extends StatefulWidget {
@@ -10,6 +11,6 @@ class Shoppingcard extends StatefulWidget {
 class _ShoppingcardState extends State<Shoppingcard> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("Page shopping Card")));
+    return Scaffold(body: Center(child: Listviewrow()));
   }
 }
