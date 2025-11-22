@@ -10,12 +10,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Amazon Wish',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: NavigationBottom(),
-    );
+    return MaterialApp(title: 'Amazon Wish', home: NavigationBottom());
   }
 }
