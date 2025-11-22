@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../../models/product.dart';
 //import du package carousel_slider + ajout dans pubspec.yaml
 
 class BannerSlider extends StatelessWidget {
-  const BannerSlider({super.key});
+  final List<Product> products;
+  const BannerSlider({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
-    final List<String> images = [
-      'lib/assets/images/image1.jpg',
-      'lib/assets/images/image2.jpg',
-      'lib/assets/images/image3.jpg',
-    ];
     return CarouselSlider(
       options: CarouselOptions(
         height: 400,
@@ -24,16 +21,55 @@ class BannerSlider extends StatelessWidget {
         viewportFraction: 0.6,
         //à 0.9, l'image prend 90% de l'écran => on voit les côtés
       ),
-      items: images.map((image) {
+      items: products.map((product) {
         return Builder(
           builder: (BuildContext context) {
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width,
-              ),
+            return Column(
+              //colonne pour afficher la réduction
+              children: [
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(8),
+
+                  child: Text(
+                    '-${product.discountPercentage.toInt()}%',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.vertical(
+                      bottom: Radius.circular(12),
+                    ),
+                    child: Image.network(
+                      product.thumbnail,
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        product.title,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                    ],
+                  ),
+                ),
+              ],
             );
           },
         );
