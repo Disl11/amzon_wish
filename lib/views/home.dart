@@ -1,4 +1,5 @@
-import 'package:amazonwish/views/widgets/listViewRow.dart';
+
+import 'package:amazonwish/views/widgets/carousel_view.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
