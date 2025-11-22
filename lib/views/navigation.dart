@@ -1,3 +1,4 @@
+import 'package:amazonwish/views/categoryPage.dart';
 import 'package:amazonwish/views/home.dart';
 import 'package:amazonwish/views/shoppingCard.dart';
 import 'package:flutter/material.dart';
