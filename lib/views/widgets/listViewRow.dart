@@ -30,7 +30,7 @@ class _ListviewrowState extends State<Listviewrow> {
                 padding: const EdgeInsets.only(left: 10),
                 child: Text(
                   "Categories du moment",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(
@@ -54,37 +54,44 @@ class _ListviewrowState extends State<Listviewrow> {
                           );
                         },
                         child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
                           child: Container(
-                            width: 150,
-                            height: 200,
-                            padding: const EdgeInsets.all(8),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 100,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Image.asset(
-                                      viewModel.getCategoryImage(category),
-                                      fit: BoxFit.cover,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFFFFA726), Color(0xFFFF7043)],
+                                begin: Alignment.bottomRight,
+                                end: Alignment.topLeft,
+                              ),
+                            ),
+                            child: Container(
+                              width: 150,
+                              height: 200,
+                              padding: const EdgeInsets.all(8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: 100,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Image.asset(
+                                        viewModel.getCategoryImage(category),
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(height: 25),
-                                Text(
-                                  category,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(fontSize: 20),
-                                ),
-                              ],
+                                  const SizedBox(height: 25),
+                                  Text(
+                                    category,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(fontSize: 20),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
