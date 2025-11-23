@@ -88,6 +88,8 @@ class ProductsViewModel extends ChangeNotifier {
       total += product.price;
     }
     return total;
+  }
+
   //méthode pour une card : afficher 4 produits à moins de 50 euros
   List<Product> getProductsPrixReduit({int limit = 4}) {
     List<Product> result = [];
