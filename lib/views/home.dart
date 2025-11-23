@@ -1,55 +1,58 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:amazonwish/views/widgets/carousel_view.dart';
 import 'package:amazonwish/views/widgets/gridview.dart';
-import 'package:flutter/material.dart';
+import 'package:amazonwish/views/widgets/listViewRow.dart';
+import 'package:amazonwish/viewModels/productsViewModel.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("Page Home")));
+    final viewModel = Provider.of<ProductsViewModel>(context);
+
+    if (viewModel.products.isEmpty && viewModel.isLoading) {
+      viewModel.loadProducts();
+    }
+
+    return viewModel.isLoading
+        ? const Center(
+            child: CircularProgressIndicator(color: Color(0xFFFF9900)),
+          )
+        : SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+
+                //utilisation du widget carousel
+                BannerSlider(products: viewModel.getTopProduits(limit: 5)),
+
+                const SizedBox(height: 20),
+
+                // utilisation du widget list row par catégories
+                const Listviewrow(),
+
+                const SizedBox(height: 20),
+
+                // utilisation du widget cards
+                const Padding(
+                  padding: EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    'Nos sélections par [à définir]',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+
+                // utilisation du widget grid
+                const HorizontalGrid(),
+
+                const SizedBox(height: 20),
+              ],
+            ),
+          );
   }
 }
-
-//**********************TEST CAROUSEL********************************** */
-// import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-// import 'package:amazonwish/views/widgets/carousel_view.dart';
-// import 'package:amazonwish/viewModels/productsViewModel.dart';
-
-// class Home extends StatelessWidget {
-//   const Home({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     // charger les produits dès le build
-//     final viewModel = Provider.of<ProductsViewModel>(context);
-//     if (viewModel.products.isEmpty && viewModel.isLoading) {
-//       viewModel.loadProducts();
-//     }
-
-//     return Scaffold(
-//       body: viewModel.isLoading
-//          ? const Center(
-//               child: CircularProgressIndicator(color: Color(0xFFFF9900)),
-//             )
-//           : SingleChildScrollView(
-//               child: Column(
-//                 children: [
-//                   // Carousel avec les produits en promo
-//                   BannerSlider(products: viewModel.getTopProduits(limit: 5)),
-
-//                   const SizedBox(height: 20),
-
-//                   const Text('home à construire'),
-//                 ],
-//               ),
-//             ),
-//     );
-//   }
-// }
