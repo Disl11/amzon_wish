@@ -50,9 +50,24 @@ class Categorypage extends StatelessWidget {
                             ],
                           ),
                         ),
+
                         ElevatedButton(
                           onPressed: () {},
-                          child: Text("Ajouter"),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(
+                              255,
+                              244,
+                              206,
+                              15,
+                            ),
+                          ),
+                          child: const Text(
+                            "Ajouter au panier",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ],
                     ),
