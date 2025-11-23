@@ -80,4 +80,13 @@ class ProductsViewModel extends ChangeNotifier {
     panier.remove(product);
     notifyListeners();
   }
+
+  //calculer le total
+  double getTotal() {
+    double total = 0;
+    for (var product in panier) {
+      total += product.price;
+    }
+    return total;
+  }
 }
