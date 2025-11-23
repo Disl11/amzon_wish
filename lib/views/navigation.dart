@@ -24,7 +24,18 @@ class _NavigationBottomState extends State<NavigationBottom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.orangeAccent),
+      appBar: AppBar(
+        backgroundColor: Colors.orangeAccent,
+        title: TextField(
+          decoration: InputDecoration(
+            hintText: "Rechercher un produit...",
+            hintStyle: TextStyle(color: Colors.white70),
+            prefixIcon: Icon(Icons.search, color: Colors.white),
+            border: InputBorder.none,
+          ),
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
       body: _pages[_selecedIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.orangeAccent,
