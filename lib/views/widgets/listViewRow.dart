@@ -20,7 +20,7 @@ class _ListviewrowState extends State<Listviewrow> {
     //on appel la medthoe pour récuper les category
     final categories = viewModel.getCategory();
 
-   // return Scaffold(
+    // return Scaffold(
     return viewModel.isLoading
         ? Center(child: CircularProgressIndicator())
         : Column(
@@ -33,13 +33,14 @@ class _ListviewrowState extends State<Listviewrow> {
                   style: TextStyle(fontSize: 20),
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 220,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
                     final category = categories[index];
+
                     return Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: GestureDetector(
@@ -50,40 +51,38 @@ class _ListviewrowState extends State<Listviewrow> {
                               builder: (context) =>
                                   Categorypage(category: category),
                             ),
-
-                            child: Container(
-                              width: 150,
-                              height: 200,
-                              padding: EdgeInsets.all(8),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    height: 100,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Image.asset(
-                                        viewModel.getCategoryImage(category),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
+                          );
+                        },
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Container(
+                            width: 150,
+                            height: 200,
+                            padding: const EdgeInsets.all(8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 100,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
-                                  child: const Icon(
-                                    Icons.category,
-                                    size: 50,
-                                    color: Colors.white,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.asset(
+                                      viewModel.getCategoryImage(category),
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
-                                SizedBox(height: 25),
+                                const SizedBox(height: 25),
                                 Text(
                                   category,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                               ],
                             ),
