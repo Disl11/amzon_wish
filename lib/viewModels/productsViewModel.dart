@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class ProductsViewModel extends ChangeNotifier {
   List<Product> products = [];
+  List<Product> panier = [];
   bool isLoading = true;
 
   Future loadProducts() async {
@@ -68,6 +69,25 @@ class ProductsViewModel extends ChangeNotifier {
     return categoryImage[category] ?? " ";
   }
 
+  // ajouter un produit au panier
+  void addCart(Product product) {
+    panier.add(product);
+    notifyListeners();
+  }
+
+  // Supprimer un produit du panier
+  void remouvCart(Product product) {
+    panier.remove(product);
+    notifyListeners();
+  }
+
+  //calculer le total
+  double getTotal() {
+    double total = 0;
+    for (var product in panier) {
+      total += product.price;
+    }
+    return total;
   //méthode pour une card : afficher 4 produits à moins de 50 euros
   List<Product> getProductsPrixReduit({int limit = 4}) {
     List<Product> result = [];

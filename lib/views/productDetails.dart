@@ -1,7 +1,9 @@
 //view pour l'affichage en détails d'un produit
 
+import 'package:amazonwish/viewModels/productsViewModel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/product.dart';
 
 class ProductDetail extends StatelessWidget {
@@ -11,6 +13,8 @@ class ProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<ProductsViewModel>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(product.title),
@@ -130,7 +134,9 @@ class ProductDetail extends StatelessWidget {
               Text(product.description, style: const TextStyle(fontSize: 16)),
 
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  viewModel.addCart(product);
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 244, 206, 15),
                 ),

@@ -66,15 +66,16 @@ class Categorypage extends StatelessWidget {
                             ),
                           ),
 
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromARGB(
-                                255,
-                                244,
-                                206,
-                                15,
-                              ),
+                        ElevatedButton(
+                          onPressed: () {
+                            viewModel.addCart(product);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(
+                              255,
+                              244,
+                              206,
+                              15,
                             ),
                             child: const Text(
                               "Ajouter au panier",
