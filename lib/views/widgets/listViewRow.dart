@@ -20,6 +20,8 @@ class _ListviewrowState extends State<Listviewrow> {
     //on appel la medthoe pour récuper les category
     final categories = viewModel.getCategory();
 
+    //pour afficher les images
+
     return Scaffold(
       body: viewModel.isLoading
           ? Center(child: CircularProgressIndicator())
@@ -70,10 +72,12 @@ class _ListviewrowState extends State<Listviewrow> {
                                       color: Colors.grey,
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    child: const Icon(
-                                      Icons.category,
-                                      size: 50,
-                                      color: Colors.white,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Image.asset(
+                                        viewModel.getCategoryImage(category),
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                   SizedBox(height: 25),

@@ -13,6 +13,7 @@ class Categorypage extends StatelessWidget {
     final products = viewModel.getProductsByCategory(category);
 
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.orangeAccent),
       body: viewModel.isLoading
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
