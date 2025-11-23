@@ -54,4 +54,17 @@ class ProductsViewModel extends ChangeNotifier {
     }
     return result;
   }
+
+  // afficher Images des categories
+
+  final Map<String, String> categoryImage = {
+    "beauty": "lib/assets/images/beuté.jpg",
+    "fragrances": "lib/assets/images/fragrances.jpg",
+    "furniture": "lib/assets/images/furniture.jpg",
+    "groceries": "lib/assets/images/groceries.jpg",
+  };
+
+  String getCategoryImage(String category) {
+    return categoryImage[category] ?? " ";
+  }
 }
