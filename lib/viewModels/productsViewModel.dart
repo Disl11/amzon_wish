@@ -26,6 +26,7 @@ class ProductsViewModel extends ChangeNotifier {
 
   List<Product> getProductsByCategory(String category) {
     return products.where((p) => p.category == category).toList();
+  }
   //méthode pour afficher les produits dans le carousel
   //et trier par rabais
 
