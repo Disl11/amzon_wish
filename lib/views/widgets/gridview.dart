@@ -1,8 +1,21 @@
 //Widget réutilisable : grid
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../viewmodels/productsViewModel.dart';
+import '../../models/product.dart';
+import '../productDetails.dart';
 
 class HorizontalGrid extends StatelessWidget {
-  const HorizontalGrid({super.key});
+  final List<Product> discountproducts;
+  final List<Product> topRatedProducts;
+  final List<Product> premiumProducts;
+
+  const HorizontalGrid({
+    super.key,
+    required this.discountproducts,
+    required this.topRatedProducts,
+    required this.premiumProducts,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +29,7 @@ class HorizontalGrid extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Card(
               elevation: 4,
-              color: Colors.yellow,
+              color: const Color.fromARGB(255, 241, 132, 60),
               child: SizedBox(
                 width: 350,
                 child: Column(
@@ -25,7 +38,7 @@ class HorizontalGrid extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
-                        'Catégorie Bidule',
+                        'Les bonnes affaires à moins de 50 €',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -41,12 +54,44 @@ class HorizontalGrid extends StatelessWidget {
                         mainAxisSpacing: 8,
                         crossAxisSpacing: 8,
                         childAspectRatio: 0.7,
-                        children: List.generate(4, (index) {
-                          return Container(
-                            color: Colors.teal,
-                            child: Center(child: Text('Item')),
+                        // children: List.generate(4, (index) {
+                        //modifier pour adapter aux données
+                        children: discountproducts.map((product) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ProductDetail(product: product),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              color: Colors.white,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Image.network(
+                                      product.thumbnail,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  // Prix
+                                  Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Text(
+                                      '\$${product.price}',
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           );
-                        }),
+                        }).toList(),
                       ),
                     ),
                   ],
@@ -60,7 +105,7 @@ class HorizontalGrid extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Card(
               elevation: 4,
-              color: Colors.blue,
+              color: const Color.fromARGB(255, 241, 132, 60),
               child: SizedBox(
                 width: 350,
                 child: Column(
@@ -68,7 +113,7 @@ class HorizontalGrid extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
-                        'Catégorie Truc',
+                        'Produits les mieux notés',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -84,12 +129,44 @@ class HorizontalGrid extends StatelessWidget {
                         mainAxisSpacing: 8,
                         crossAxisSpacing: 8,
                         childAspectRatio: 0.7,
-                        children: List.generate(4, (index) {
-                          return Container(
-                            color: Colors.green,
-                            child: Center(child: Text('Item')),
+                        // children: List.generate(4, (index) {
+                        //modifier pour adapter aux données
+                        children: topRatedProducts.map((product) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ProductDetail(product: product),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              color: const Color.fromARGB(255, 255, 255, 255),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Image.network(
+                                      product.thumbnail,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  // rating
+                                  Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Text(
+                                      '${product.rating}',
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           );
-                        }),
+                        }).toList(),
                       ),
                     ),
                   ],
@@ -103,7 +180,7 @@ class HorizontalGrid extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Card(
               elevation: 4,
-              color: const Color.fromARGB(255, 242, 143, 51),
+              color: const Color.fromARGB(255, 241, 132, 60),
               child: SizedBox(
                 width: 350,
                 child: Column(
@@ -111,7 +188,7 @@ class HorizontalGrid extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
-                        'Catégorie Machin',
+                        'Nos produits Premium à saisir',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -127,12 +204,44 @@ class HorizontalGrid extends StatelessWidget {
                         mainAxisSpacing: 8,
                         crossAxisSpacing: 8,
                         childAspectRatio: 0.7,
-                        children: List.generate(4, (index) {
-                          return Container(
-                            color: const Color.fromARGB(255, 247, 115, 177),
-                            child: Center(child: Text('Item')),
+                        // children: List.generate(4, (index) {
+                        //modifier pour adapter aux données
+                        children: premiumProducts.map((product) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ProductDetail(product: product),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              color: Colors.white,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Image.network(
+                                      product.thumbnail,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  // affiche le title
+                                  Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Text(
+                                      '${product.title}',
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           );
-                        }),
+                        }).toList(),
                       ),
                     ),
                   ],

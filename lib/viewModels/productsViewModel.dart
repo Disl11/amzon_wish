@@ -88,5 +88,58 @@ class ProductsViewModel extends ChangeNotifier {
       total += product.price;
     }
     return total;
+  //méthode pour une card : afficher 4 produits à moins de 50 euros
+  List<Product> getProductsPrixReduit({int limit = 4}) {
+    List<Product> result = [];
+    for (var product in products) {
+      if (product.price < 50) {
+        result.add(product);
+      }
+      if (result.length >= limit) {
+        break;
+      }
+    }
+    return result;
+  }
+
+  //méthode pour la card des produits les mieux notés
+  //j'applique la même logique que pour les réductions
+
+  List<Product> getBestRatedProducts({int limit = 4}) {
+    List<Product> productsCopy = [];
+    for (var product in products) {
+      productsCopy.add(product);
+    }
+    //puis je trie
+    productsCopy.sort((productA, productB) {
+      if (productB.rating > productA.rating) {
+        return 1;
+      } else if (productA.rating > productB.rating) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    //et on garde les premiers sans limite (on limite dans la view)
+    List<Product> result = [];
+    for (int i = 0; i < limit && i < productsCopy.length; i++) {
+      result.add(productsCopy[i]);
+    }
+    return result;
+  }
+
+  //méthode pour les produits premium à plus de 200 euros
+  List<Product> getPremiumProducts({int limit = 4}) {
+    List<Product> result = [];
+    for (var product in products) {
+      if (product.price > 200) {
+        result.add(product);
+      }
+      if (result.length >= limit) {
+        break;
+      }
+    }
+
+    return result;
   }
 }

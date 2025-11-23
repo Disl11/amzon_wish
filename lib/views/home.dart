@@ -40,7 +40,7 @@ class Home extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(left: 16.0),
                   child: Text(
-                    'Nos sélections par [à définir]',
+                    'Nos sélections à découvrir',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -48,7 +48,12 @@ class Home extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 // utilisation du widget grid
-                const HorizontalGrid(),
+                HorizontalGrid(
+                  discountproducts: viewModel.getProductsPrixReduit(limit: 4),
+
+                  topRatedProducts: viewModel.getBestRatedProducts(limit: 4),
+                  premiumProducts: viewModel.getPremiumProducts(limit: 4),
+                ),
 
                 const SizedBox(height: 20),
               ],
