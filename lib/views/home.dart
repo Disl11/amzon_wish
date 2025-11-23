@@ -31,6 +31,28 @@ class Home extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
+                Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(0),
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFFFFA726), Color(0xFFFF7043)],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Black Friday Week aura lieu du 20 novembre au 1 décembre",
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
                 // utilisation du widget list row par catégories
                 const Listviewrow(),
 
