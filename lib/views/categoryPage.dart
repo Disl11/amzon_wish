@@ -52,7 +52,9 @@ class Categorypage extends StatelessWidget {
                         ),
 
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            viewModel.addCart(product);
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color.fromARGB(
                               255,

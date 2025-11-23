@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class ProductsViewModel extends ChangeNotifier {
   List<Product> products = [];
+  List<Product> panier = [];
   bool isLoading = true;
 
   Future loadProducts() async {
@@ -66,5 +67,17 @@ class ProductsViewModel extends ChangeNotifier {
 
   String getCategoryImage(String category) {
     return categoryImage[category] ?? " ";
+  }
+
+  // ajouter un produit au panier
+  void addCart(Product product) {
+    panier.add(product);
+    notifyListeners();
+  }
+
+  // Supprimer un produit du panier
+  void remouvCart(Product product) {
+    panier.remove(product);
+    notifyListeners();
   }
 }
