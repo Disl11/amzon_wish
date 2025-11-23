@@ -1,5 +1,6 @@
 import 'package:amazonwish/viewModels/productsViewModel.dart';
 import 'package:flutter/foundation.dart';
+import '../views/productDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,56 +21,71 @@ class Categorypage extends StatelessWidget {
               itemCount: products.length,
               itemBuilder: (context, index) {
                 final product = products[index];
-                return Card(
-                  child: Container(
-                    height: 150,
-                    padding: const EdgeInsets.all(8),
-                    child: Row(
-                      children: [
-                        Image.network(
-                          product.thumbnail,
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                        SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                product.title,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: 8),
-                              Text("${product.price} €"),
-                            ],
-                          ),
-                        ),
 
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromARGB(
-                              255,
-                              244,
-                              206,
-                              15,
+                //test ajout lien vers détails product
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductDetail(product: product),
+                      ),
+                    );
+                  },
+
+                  // return Card(
+                  //   child: Container(
+                  child: Card(
+                    child: Container(
+                      height: 150,
+                      padding: const EdgeInsets.all(8),
+                      child: Row(
+                        children: [
+                          Image.network(
+                            product.thumbnail,
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  product.title,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 8),
+                                Text("${product.price} €"),
+                              ],
                             ),
                           ),
-                          child: const Text(
-                            "Ajouter au panier",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color.fromARGB(
+                                255,
+                                244,
+                                206,
+                                15,
+                              ),
+                            ),
+                            child: const Text(
+                              "Ajouter au panier",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
