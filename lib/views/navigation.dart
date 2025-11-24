@@ -47,6 +47,7 @@ class _NavigationBottomState extends State<NavigationBottom> {
             icon: Icon(Icons.shopping_cart),
             label: "Cards",
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Catégories"),
         ],
       ),
     );
