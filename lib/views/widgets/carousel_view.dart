@@ -10,92 +10,110 @@ class BannerSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: 400,
-        //j'avais d'abord mis 200 mais trop petit par rapport au clone amazon donc 400 hauteur et modif' du ratio
-        autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 2),
-        autoPlayAnimationDuration: const Duration(milliseconds: 800),
-        enlargeCenterPage: true,
-        //agrandit légèrement l'image au centre et réduit les images sur les côtés avec true = effet de zoom
-        viewportFraction: 0.6,
-        //à 0.9, l'image prend 90% de l'écran => on voit les côtés
+    return Container(
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xFFFF8A65),
+            Color(0xFFFF9E7F),
+            Color(0xFFFFB299),
+            Color(0xFFFFC5B2),
+            Color(0xFFFFD9CC),
+            Color(0xFFFFECE5),
+            Color(0xFFFFFFFF),
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
       ),
-      items: products.map((product) {
-        return Builder(
-          builder: (BuildContext context) {
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductDetail(product: product),
-                  ),
-                );
-              },
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFFFFA726), Color(0xFFFF7043)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                child: Column(
-                  //colonne pour afficher la réduction
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(8),
-
-                      child: Text(
-                        '-${product.discountPercentage.toInt()}%',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+      child: CarouselSlider(
+        options: CarouselOptions(
+          height: 400,
+          //j'avais d'abord mis 200 mais trop petit par rapport au clone amazon donc 400 hauteur et modif' du ratio
+          autoPlay: true,
+          autoPlayInterval: const Duration(seconds: 2),
+          autoPlayAnimationDuration: const Duration(milliseconds: 800),
+          enlargeCenterPage: true,
+          //agrandit légèrement l'image au centre et réduit les images sur les côtés avec true = effet de zoom
+          viewportFraction: 0.6,
+          //à 0.9, l'image prend 90% de l'écran => on voit les côtés
+        ),
+        items: products.map((product) {
+          return Builder(
+            builder: (BuildContext context) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductDetail(product: product),
                     ),
-
-                    Expanded(
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.vertical(
-                          bottom: Radius.circular(12),
-                        ),
-                        child: Image.network(
-                          product.thumbnail,
-                          fit: BoxFit.cover,
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                      ),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFFFFA726), Color(0xFFFF7043)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            product.title,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
+                  ),
+                  child: Column(
+                    //colonne pour afficher la réduction
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(8),
+
+                        child: Text(
+                          '-${product.discountPercentage.toInt()}%',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.white,
                           ),
-                          const SizedBox(height: 4),
-                        ],
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                  ],
+
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.vertical(
+                            bottom: Radius.circular(12),
+                          ),
+                          child: Image.network(
+                            product.thumbnail,
+                            fit: BoxFit.cover,
+                            width: MediaQuery.of(context).size.width,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              product.title,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
-        );
-      }).toList(),
+              );
+            },
+          );
+        }).toList(),
+      ),
     );
   }
 }

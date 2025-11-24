@@ -1,3 +1,4 @@
+import 'package:amazonwish/views/widgets/tags.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:amazonwish/views/widgets/carousel_view.dart';
@@ -24,7 +25,7 @@ class Home extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 10),
+                Tags(),
 
                 //utilisation du widget carousel
                 BannerSlider(products: viewModel.getTopProduits(limit: 5)),
@@ -48,6 +49,7 @@ class Home extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                   ),
