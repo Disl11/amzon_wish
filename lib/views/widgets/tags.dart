@@ -5,14 +5,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Listviewrow extends StatefulWidget {
-  const Listviewrow({super.key});
+class Tags extends StatefulWidget {
+  const Tags({super.key});
 
   @override
-  State<Listviewrow> createState() => _ListviewrowState();
+  State<Tags> createState() => _TagsState();
 }
 
-class _ListviewrowState extends State<Listviewrow> {
+class _TagsState extends State<Tags> {
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<ProductsViewModel>(context);
@@ -26,21 +26,27 @@ class _ListviewrowState extends State<Listviewrow> {
         : Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text(
-                  "Categories du moment",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              Container(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [
+                      Color(0xFFFFAB40),
+                      Color(0xFFFFA34A),
+                      Color(0xFFFF9C54),
+                      Color(0xFFFF955D),
+                      Color(0xFFFF8E63),
+                      Color(0xFFFF8A65),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 220,
+                height: 48,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
                     final category = categories[index];
-
                     return Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: GestureDetector(
@@ -54,43 +60,23 @@ class _ListviewrowState extends State<Listviewrow> {
                           );
                         },
                         child: Card(
+                          color: Colors.white.withOpacity(0.5),
                           child: Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              gradient: const LinearGradient(
-                                colors: [Color(0xFFFFA726), Color(0xFFFF7043)],
-                                begin: Alignment.bottomRight,
-                                end: Alignment.topLeft,
-                              ),
+                              borderRadius: BorderRadius.circular(5),
                             ),
                             child: Container(
-                              width: 150,
-                              height: 200,
+                              width: 130,
                               padding: const EdgeInsets.all(8),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    height: 100,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Image.asset(
-                                        viewModel.getCategoryImage(category),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 25),
                                   Text(
                                     category,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
+                                      fontSize: 10,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ],
