@@ -18,7 +18,7 @@ class ProductsViewModel extends ChangeNotifier {
   }
 
   //recuperation des category
-  List<String> getCategory() {
+  List<String> getCategory({int limit = 4}) {
     final category = products.map((p) => p.category).toSet().toList();
     return category;
   }
