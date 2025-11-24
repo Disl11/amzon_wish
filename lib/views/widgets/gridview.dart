@@ -42,6 +42,7 @@ class HorizontalGrid extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -68,7 +69,11 @@ class HorizontalGrid extends StatelessWidget {
                               );
                             },
                             child: Container(
-                              color: Colors.white,
+                              decoration: BoxDecoration(
+                                // color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                              ),
                               child: Column(
                                 children: [
                                   Expanded(
@@ -117,6 +122,7 @@ class HorizontalGrid extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -129,6 +135,7 @@ class HorizontalGrid extends StatelessWidget {
                         mainAxisSpacing: 8,
                         crossAxisSpacing: 8,
                         childAspectRatio: 0.7,
+
                         // children: List.generate(4, (index) {
                         //modifier pour adapter aux données
                         children: topRatedProducts.map((product) {
@@ -143,7 +150,11 @@ class HorizontalGrid extends StatelessWidget {
                               );
                             },
                             child: Container(
-                              color: const Color.fromARGB(255, 255, 255, 255),
+                              decoration: BoxDecoration(
+                                // color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                              ),
                               child: Column(
                                 children: [
                                   Expanded(
@@ -192,6 +203,7 @@ class HorizontalGrid extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -218,7 +230,10 @@ class HorizontalGrid extends StatelessWidget {
                               );
                             },
                             child: Container(
-                              color: Colors.white,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                              ),
                               child: Column(
                                 children: [
                                   Expanded(
