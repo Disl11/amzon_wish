@@ -1,20 +1,18 @@
-//Widget réutilisable : grid
+//Widget réutilisable : grid pour catégories
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../viewmodels/productsViewModel.dart';
 import '../../models/product.dart';
 import '../productDetails.dart';
 
-class HorizontalGrid extends StatelessWidget {
-  final List<Product> discountproducts;
-  final List<Product> topRatedProducts;
-  final List<Product> premiumProducts;
+class HorizontalGrid2 extends StatelessWidget {
+  final List<Product> category1Products;
+  final List<Product> category2Products;
+  final List<Product> category3Products;
 
-  const HorizontalGrid({
+  const HorizontalGrid2({
     super.key,
-    required this.discountproducts,
-    required this.topRatedProducts,
-    required this.premiumProducts,
+    required this.category1Products,
+    required this.category2Products,
+    required this.category3Products,
   });
 
   @override
@@ -24,7 +22,7 @@ class HorizontalGrid extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          // Card 1
+          // Catégorie Beauty
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
@@ -34,11 +32,10 @@ class HorizontalGrid extends StatelessWidget {
                 width: 350,
                 child: Column(
                   children: [
-                    //je crée une colonne pour pouvoir mettre du texte
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
-                        'Les bonnes affaires à moins de 50 €',
+                        'Beauté',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -46,8 +43,6 @@ class HorizontalGrid extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    // et la GRID à 4 items
                     Expanded(
                       child: GridView.count(
                         crossAxisCount: 2,
@@ -55,9 +50,7 @@ class HorizontalGrid extends StatelessWidget {
                         mainAxisSpacing: 8,
                         crossAxisSpacing: 8,
                         childAspectRatio: 0.7,
-                        // children: List.generate(4, (index) {
-                        //modifier pour adapter aux données
-                        children: discountproducts.map((product) {
+                        children: category1Products.map((product) {
                           return GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -70,7 +63,6 @@ class HorizontalGrid extends StatelessWidget {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                // color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.white,
                               ),
@@ -82,7 +74,6 @@ class HorizontalGrid extends StatelessWidget {
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  // Prix
                                   Padding(
                                     padding: const EdgeInsets.all(4.0),
                                     child: Text(
@@ -105,7 +96,7 @@ class HorizontalGrid extends StatelessWidget {
             ),
           ),
 
-          // Card 2
+          // Catégorie Fragrances
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
@@ -118,7 +109,7 @@ class HorizontalGrid extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
-                        'Produits les mieux notés',
+                        'Parfums',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -126,8 +117,6 @@ class HorizontalGrid extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    // la grid à 4 items
                     Expanded(
                       child: GridView.count(
                         crossAxisCount: 2,
@@ -135,10 +124,7 @@ class HorizontalGrid extends StatelessWidget {
                         mainAxisSpacing: 8,
                         crossAxisSpacing: 8,
                         childAspectRatio: 0.7,
-
-                        // children: List.generate(4, (index) {
-                        //modifier pour adapter aux données
-                        children: topRatedProducts.map((product) {
+                        children: category2Products.map((product) {
                           return GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -151,7 +137,6 @@ class HorizontalGrid extends StatelessWidget {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                // color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.white,
                               ),
@@ -163,11 +148,10 @@ class HorizontalGrid extends StatelessWidget {
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  // rating
                                   Padding(
                                     padding: const EdgeInsets.all(4.0),
                                     child: Text(
-                                      '${product.rating}',
+                                      '€${product.price}',
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -186,7 +170,7 @@ class HorizontalGrid extends StatelessWidget {
             ),
           ),
 
-          // Card 3
+          //Catégorie Furniture
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
@@ -199,7 +183,7 @@ class HorizontalGrid extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
-                        'Nos produits Premium à saisir',
+                        'Maison',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -207,8 +191,6 @@ class HorizontalGrid extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    // la grid à 4 items
                     Expanded(
                       child: GridView.count(
                         crossAxisCount: 2,
@@ -216,9 +198,7 @@ class HorizontalGrid extends StatelessWidget {
                         mainAxisSpacing: 8,
                         crossAxisSpacing: 8,
                         childAspectRatio: 0.7,
-                        // children: List.generate(4, (index) {
-                        //modifier pour adapter aux données
-                        children: premiumProducts.map((product) {
+                        children: category3Products.map((product) {
                           return GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -242,11 +222,10 @@ class HorizontalGrid extends StatelessWidget {
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  // affiche le title
                                   Padding(
                                     padding: const EdgeInsets.all(4.0),
                                     child: Text(
-                                      '${product.title}',
+                                      '€${product.price}',
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
