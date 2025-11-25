@@ -144,4 +144,19 @@ class ProductsViewModel extends ChangeNotifier {
 
     return result;
   }
+
+  //méthode pour les produits à moins de 100 euros
+  List<Product> getProductsMoinsCent({int limit = 4}) {
+    List<Product> result = [];
+    for (var product in products) {
+      if (product.price < 100) {
+        result.add(product);
+
+        if (result.length >= limit) {
+          break;
+        }
+      }
+    }
+    return result;
+  }
 }
